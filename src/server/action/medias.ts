@@ -1,14 +1,13 @@
 'use server';
 import Fuse from 'fuse.js';
-
 import {
   getMoviesByGenreIdCached,
   getSeriesByGenreIdCached,
-} from '../db/genre/genre-database-cache';
-import { getPaginatedMoviesCached } from '../db/movie/movie-database-cache';
-import { findMovieByQuery } from '../db/movie/movie-database-inner';
-import { getPaginatedSeriesCached } from '../db/serie/serie-database-cache';
-import { findSerieByQuery } from '../db/serie/serie-database-inner';
+} from '@/server/db/genre/genre-database-cache';
+import { getPaginatedMoviesCached } from '@/server/db/movie/movie-database-cache';
+import { findMovieByQuery } from '@/server/db/movie/movie-database-inner';
+import { getPaginatedSeriesCached } from '@/server/db/serie/serie-database-cache';
+import { findSerieByQuery } from '@/server/db/serie/serie-database-inner';
 
 export const searchMedia = async (query: string) => {
   const [movieSearchResult, serieSearchResults] = await Promise.all([

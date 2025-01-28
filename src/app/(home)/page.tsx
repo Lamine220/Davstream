@@ -1,6 +1,4 @@
-export const dynamic = 'force-dynamic';
 import { Suspense } from 'react';
-
 import HeroSection from '@/components/layout/hero';
 import MediaCarousel from '@/components/layout/media-carousel';
 import WatchProvidersCarousel, {

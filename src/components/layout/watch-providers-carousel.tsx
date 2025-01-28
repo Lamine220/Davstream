@@ -10,7 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Skeleton } from '../ui/skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const WatchProvidersCarousel = ({ data }: { data: WatchProvider[] }) => {
   return (

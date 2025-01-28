@@ -1,11 +1,9 @@
 'use server';
-
 import { unstable_cache } from 'next/cache';
 import { cache } from 'react';
-
 import * as genreDatabaseInner from './genre-database-inner';
 
-const REVALIDATE_TIME = 60 * 10; // Revalidate data after 10 minutes
+const REVALIDATE_TIME = 3600; // Revalidate data after 10 minutes
 
 export const getSeriesByGenreIdCached = async (data: {
   genreId: string;

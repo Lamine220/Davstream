@@ -1,6 +1,6 @@
 'use server';
 
-import { Movie, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { revalidateTag } from 'next/cache';
 
 import prisma from '@/lib/prisma';

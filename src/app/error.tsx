@@ -1,12 +1,9 @@
 'use client';
-
 import { Frown } from 'lucide-react';
 import Link from 'next/link';
-
 import { Button } from '@/components/ui/button';
 
 const ErrorPage = () => {
-  // TODO: IMPROVE THE ERROR PAGE
   return (
     <main className="grid min-h-screen flex-1 place-items-center">
       <div className="container flex max-w-md flex-col items-center justify-center gap-3 text-center">
@@ -16,7 +13,9 @@ const ErrorPage = () => {
           page d&apos;accueil.
         </p>
         <Button asChild>
-          <Link prefetch={false} href="/">Page d&apos;accueil</Link>
+          <Link prefetch={false} href="/">
+            Accueil
+          </Link>
         </Button>
       </div>
     </main>
