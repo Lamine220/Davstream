@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum MediaType {
+  MOVIE
+  SERIE
+}
+
+model Movie {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  tmdbId    Int       @unique
+  mediaType MediaType @default(MOVIE)
+
+  title         String
+  originalTitle String
+  releaseYear   Int
+
+  downloadLinks String[]
+  popularity    Float    @default(0)
+  rating        Float    @default(0)
+  overview      String?
+  posterPath    String?
+  backdropPath  String?
+
+  players MoviePlayer[]
+
+  genres    MovieGenre[] @relation(fields: [genresIds], references: [id])
+  genresIds String[]     @db.ObjectId
+
+  watchProviders   WatchProvider[] @relation(fields: [watchProviderIds], references: [id])
+  watchProviderIds String[]        @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MoviePlayer {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  url      String  @unique
+  name     String
+  language String?
+
+  movie   Movie  @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  movieId String @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MovieGenre {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  tmdbId      Int     @unique
+  name        String
+  position    Int     @default(0)
+  description String?
+  slug        String  @unique
+
+  movies    Movie[]  @relation(fields: [moviesIds], references: [id])
+  moviesIds String[] @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Serie {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  tmdbId    Int       @unique
+  mediaType MediaType @default(SERIE)
+
+  title         String
+  originalTitle String
+  releaseYear   Int
+
+  overview     String?
+  posterPath   String?
+  backdropPath String?
+  rating       Float   @default(0)
+  popularity   Float   @default(0)
+
+  seasons  Season[]
+  episodes Episode[]
+  players  SeriePlayer[]
+
+  genres    SerieGenre[] @relation(fields: [genresIds], references: [id])
+  genresIds String[]     @db.ObjectId
+
+  watchProviders   WatchProvider[] @relation(fields: [watchProviderIds], references: [id])
+  watchProviderIds String[]        @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SerieGenre {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  tmdbId      Int     @unique
+  name        String
+  position    Int     @default(0)
+  description String?
+  slug        String  @unique
+
+  series    Serie[]  @relation(fields: [seriesIds], references: [id])
+  seriesIds String[] @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Season {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  number Int
+  title  String
+
+  episodes Episode[]
+  serie    Serie     @relation(fields: [serieId], references: [id], onDelete: Cascade)
+  serieId  String    @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([serieId, number])
+}
+
+model Episode {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  number       Int
+  seasonNumber Int
+
+  title         String
+  downloadLinks String[]
+
+  players SeriePlayer[]
+
+  season   Season @relation(fields: [seasonId], references: [id], onDelete: Cascade)
+  seasonId String @db.ObjectId
+
+  serie   Serie  @relation(fields: [serieId], references: [id], onDelete: Cascade)
+  serieId String @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([seasonId, number])
+}
+
+model SeriePlayer {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  url      String  @unique
+  name     String
+  language String?
+
+  episode   Episode @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+  episodeId String  @db.ObjectId
+
+  serieId String? @db.ObjectId
+  serie   Serie?  @relation(fields: [serieId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WatchProvider {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  tmdbId    Int     @unique
+  name      String  @unique
+  logoPath  String
+  smallLogo String?
+  position  Int     @default(0)
+
+  movies   Movie[]  @relation(fields: [movieIds], references: [id])
+  movieIds String[] @db.ObjectId
+
+  series   Serie[]  @relation(fields: [serieIds], references: [id])
+  serieIds String[] @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
