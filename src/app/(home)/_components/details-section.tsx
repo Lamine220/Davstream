@@ -69,6 +69,7 @@ const DetailsSection = ({ media }: Props) => {
           <div className="flex flex-wrap gap-2">
             {media.genres.map(item => (
               <Link
+                prefetch={false}
                 href={`/${media.mediaType === 'SERIE' ? 'series' : 'movies'}/genres/${item.id}`}
                 key={item.id}
               >

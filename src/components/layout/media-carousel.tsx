@@ -107,7 +107,9 @@ const MediaCarousel = ({
 
           {extraLink && (
             <Button asChild variant={'accent'}>
-              <Link href={extraLink.href}>{extraLink.label}</Link>
+              <Link prefetch={false} href={extraLink.href}>
+                {extraLink.label}
+              </Link>
             </Button>
           )}
 
@@ -136,7 +138,9 @@ const MediaCarousel = ({
         />
         {extraLink && (
           <Button asChild variant={'accent'}>
-            <Link href={extraLink.href}>{extraLink.label}</Link>
+            <Link prefetch={false} href={extraLink.href}>
+              {extraLink.label}
+            </Link>
           </Button>
         )}
         <CarouselNext

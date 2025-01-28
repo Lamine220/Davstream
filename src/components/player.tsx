@@ -55,7 +55,9 @@ const Player = ({
             variant={'accent'}
             asChild
           >
-            <Link href={downloadLinks?.[0] || '#'}>Telecharger</Link>
+            <Link prefetch={false} href={downloadLinks?.[0] || '#'}>
+              Telecharger
+            </Link>
           </Button>
         </div>
 

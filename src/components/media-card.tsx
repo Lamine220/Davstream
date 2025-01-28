@@ -19,6 +19,7 @@ const MediaCard = ({ data, providerLogo }: Props) => {
 
   return (
     <Link
+      prefetch={false}
       href={
         isSerie
           ? `/series/${_.kebabCase(data.title)}/${data.id}`

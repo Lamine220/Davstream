@@ -51,20 +51,28 @@ const Navbar = () => {
     <nav className="sticky left-0 top-0 z-50 flex h-16 w-full items-center justify-center border-b bg-black/70 backdrop-blur">
       <div className="container flex items-center justify-between">
         <div className="flex-1">
-          <Link href={'/'} className="text-xl font-semibold">
+          <Link prefetch={false} href={'/'} className="text-xl font-semibold">
             DavStream
           </Link>
         </div>
 
-        <Link href={'/'}>
+        <Link prefetch={false} href={'/'}>
           <Image src={'/logo.svg'} width={40} height={40} alt="" />
         </Link>
 
         <div className="hidden flex-1 justify-end gap-6 text-sm md:flex">
-          <Link href={'/search'}>Recherche</Link>
-          <Link href={'/series'}>Séries</Link>
-          <Link href={'/movies'}>Films</Link>
-          <Link href={'/'}>Chaines Télé (Bientot)</Link>
+          <Link prefetch={false} href={'/search'}>
+            Recherche
+          </Link>
+          <Link prefetch={false} href={'/series'}>
+            Séries
+          </Link>
+          <Link prefetch={false} href={'/movies'}>
+            Films
+          </Link>
+          <Link prefetch={false} href={'/'}>
+            Chaines Télé (Bientot)
+          </Link>
         </div>
 
         <div className="flex flex-1 justify-end gap-2 md:hidden">
@@ -74,7 +82,7 @@ const Navbar = () => {
             variant={'ghost'}
             className="hover:bg-primary hover:text-primary-foreground"
           >
-            <Link href={'/search'}>
+            <Link prefetch={false} href={'/search'}>
               <Search className="h-5 w-5" />
             </Link>
           </Button>
@@ -105,7 +113,7 @@ const Navbar = () => {
                     className="justify-start gap-2"
                     onClick={() => setIsOpen(false)}
                   >
-                    <Link href={item.href}>
+                    <Link prefetch={false} href={item.href}>
                       <item.icon />
                       {item.label}
                     </Link>

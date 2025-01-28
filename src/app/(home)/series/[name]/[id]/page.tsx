@@ -53,6 +53,7 @@ const SerieDetailsPage = async ({ params }: Props) => {
 
           return (
             <Link
+              prefetch={false}
               href={`${id}/${season.number}/${firstEpisode?.number || 1}`}
               key={season.id}
             >

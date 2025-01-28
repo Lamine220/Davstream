@@ -38,6 +38,7 @@ const Footer = () => {
         <div className="flex max-w-md flex-col items-start gap-1.5">
           <Link
             href={'/'}
+            prefetch={false}
             className="flex items-center justify-center gap-1.5 text-xl font-bold"
           >
             <span>DavStream</span>
@@ -58,7 +59,9 @@ const Footer = () => {
               variant={'link'}
               className="h-fit px-0"
             >
-              <Link href={item.href}>{item.label}</Link>
+              <Link prefetch={false} href={item.href}>
+                {item.label}
+              </Link>
             </Button>
           ))}
         </div>
@@ -69,7 +72,9 @@ const Footer = () => {
           <p className="text-sm">
             &copy; 2024{' '}
             <Button asChild variant={'link'} className="h-fit px-0">
-              <Link href={'/'}>davstream.vercel.app</Link>
+              <Link prefetch={false} href={'/'}>
+                davstream.vercel.app
+              </Link>
             </Button>{' '}
             | Site Web réalisé par Lamine Diamoutene
           </p>

@@ -25,7 +25,6 @@ import MediaGenreFetcher from './_components/media-genre-fetcher';
 
 const HomePage = async () => {
   // TODO: Connect players to serie with serieId
-
   return (
     <>
       <Suspense fallback={<HeroSkeleton />}>

@@ -2,7 +2,6 @@
 import { WatchProvider } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { Card } from '@/components/ui/card';
 import {
   Carousel,
@@ -11,7 +10,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-
 import { Skeleton } from '../ui/skeleton';
 
 const WatchProvidersCarousel = ({ data }: { data: WatchProvider[] }) => {
@@ -84,7 +82,7 @@ const WatchProvidersCarousel = ({ data }: { data: WatchProvider[] }) => {
             key={item.name}
             className="basis-1/2 pl-2 md:basis-1/4 lg:basis-1/6"
           >
-            <Link href={`/watchProviders/${item.tmdbId}`}>
+            <Link prefetch={false} href={`/watchProviders/${item.tmdbId}`}>
               <Card className="flex h-[100px] w-full items-center justify-center bg-foreground p-4 text-background md:h-[110px] lg:h-[125px]">
                 <Image
                   unoptimized

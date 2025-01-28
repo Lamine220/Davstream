@@ -84,7 +84,10 @@ const HeroSlide = ({ media }: { media: MediaBasicSelectType }) => (
         </div>
 
         <Button asChild>
-          <Link href={`/movies/${_.kebabCase(media.title)}/${media.id}`}>
+          <Link
+            prefetch={false}
+            href={`/movies/${_.kebabCase(media.title)}/${media.id}`}
+          >
             <span>Regarder</span>
             <Play className="ml-2 h-5 w-5 fill-background stroke-background" />
           </Link>

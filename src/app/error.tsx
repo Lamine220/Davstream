@@ -16,7 +16,7 @@ const ErrorPage = () => {
           page d&apos;accueil.
         </p>
         <Button asChild>
-          <Link href="/">Page d&apos;accueil</Link>
+          <Link prefetch={false} href="/">Page d&apos;accueil</Link>
         </Button>
       </div>
     </main>

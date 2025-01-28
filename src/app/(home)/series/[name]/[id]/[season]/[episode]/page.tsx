@@ -84,7 +84,9 @@ const SerieStreamingPage = async ({ params }: Props) => {
             variant={'outline'}
             className={cn(item.number === episodeNumber && 'bg-muted')}
           >
-            <Link href={`${item.number}`}>{item.number}</Link>
+            <Link prefetch={false} href={`${item.number}`}>
+              {item.number}
+            </Link>
           </Button>
         ))}
       </div>
